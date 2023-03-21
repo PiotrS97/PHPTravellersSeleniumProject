@@ -1,14 +1,14 @@
 package pl.seleniumdemo.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class SignUpPage {
-    public SignUpPage(WebDriver driver){
+    public SignUpPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
     @FindBy(name = "firstname")
@@ -26,32 +26,42 @@ public class SignUpPage {
     @FindBy(xpath = "//button[text()=' Sign Up']")
     private WebElement signUpButton;
 
-    public void setFirstName(String firstName){
+    private WebDriver driver;
+
+    public SignUpPage setFirstName(String firstName) {
         firstNameInput.sendKeys(firstName);
+        return this;
     }
 
-    public void setLastName(String lastName){
+    public SignUpPage setLastName(String lastName) {
         lastNameInput.sendKeys(lastName);
+        return this;
     }
 
-    public void setPhone(String phone){
+    public SignUpPage setPhone(String phone) {
         phoneInput.sendKeys(phone);
+        return this;
     }
 
-    public void setEmail(){
-        emailInput.sendKeys("abc"+ System.currentTimeMillis() +"@cbz.pl");
+    public SignUpPage setEmail() {
+        emailInput.sendKeys("abc" + System.currentTimeMillis() + "@cbz.pl");
+        return this;
     }
 
-    public void setPassword(String password){
+    public SignUpPage setPassword(String password) {
         passwordInput.sendKeys(password);
+        return this;
     }
 
-    public void setPasswordConfirmation(String password){
+    public SignUpPage setPasswordConfirmation(String password) {
         confirmPasswordInput.sendKeys(password);
+        return this;
     }
 
-    public void performSignUp(){
+    public LoggedUserPage performSignUp() {
         signUpButton.click();
+
+        return new LoggedUserPage(driver);
     }
 
 }
