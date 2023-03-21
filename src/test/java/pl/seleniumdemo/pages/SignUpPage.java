@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class SignUpPage {
-    public SignUpPage(WebDriver driver){
+    public SignUpPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
@@ -26,31 +26,31 @@ public class SignUpPage {
     @FindBy(xpath = "//button[text()=' Sign Up']")
     private WebElement signUpButton;
 
-    public void setFirstName(String firstName){
+    public void setFirstName(String firstName) {
         firstNameInput.sendKeys(firstName);
     }
 
-    public void setLastName(String lastName){
+    public void setLastName(String lastName) {
         lastNameInput.sendKeys(lastName);
     }
 
-    public void setPhone(String phone){
+    public void setPhone(String phone) {
         phoneInput.sendKeys(phone);
     }
 
-    public void setEmail(){
-        emailInput.sendKeys("abc"+ System.currentTimeMillis() +"@cbz.pl");
+    public void setEmail() {
+        emailInput.sendKeys("abc" + System.currentTimeMillis() + "@cbz.pl");
     }
 
-    public void setPassword(String password){
+    public void setPassword(String password) {
         passwordInput.sendKeys(password);
     }
 
-    public void setPasswordConfirmation(String password){
+    public void setPasswordConfirmation(String password) {
         confirmPasswordInput.sendKeys(password);
     }
 
-    public void performSignUp(){
+    public void performSignUp() {
         signUpButton.click();
     }
 

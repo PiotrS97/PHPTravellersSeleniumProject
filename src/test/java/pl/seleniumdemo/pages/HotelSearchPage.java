@@ -26,28 +26,28 @@ public class HotelSearchPage {
     @FindBy(xpath = "//button[contains(text(),' Search')]")
     private WebElement searchButton;
 
-    public HotelSearchPage(WebDriver driver){
+    public HotelSearchPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
-    public void setCity(String cityName){
+    public void setCity(String cityName) {
         searchHotelSpan.click();
         searchHotelInput.sendKeys(cityName);
         hotelMatch.click();
     }
 
-    public void setDates(String checkin, String checkout){
+    public void setDates(String checkin, String checkout) {
         checkinInput.sendKeys(checkin);
         checkoutInput.sendKeys(checkout);
     }
 
-    public void setTravellers(){
+    public void setTravellers() {
         travellersInput.click();
         adultPlusBtn.click();
         childPlusBtn.click();
     }
 
-    public void performSearch(){
+    public void performSearch() {
         searchButton.click();
     }
 }
