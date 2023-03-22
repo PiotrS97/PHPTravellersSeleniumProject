@@ -16,7 +16,7 @@ public class BaseTest {
 
         driver = DriverFactory.getDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(15L, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
         driver.get("http://www.kurs-selenium.pl/demo/");
     }
 
