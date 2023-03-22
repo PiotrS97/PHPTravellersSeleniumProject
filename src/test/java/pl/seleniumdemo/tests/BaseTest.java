@@ -1,10 +1,9 @@
 package pl.seleniumdemo.tests;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pl.seleniumdemo.utils.DriverFactory;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,9 +12,8 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        ChromeOptions option = new ChromeOptions();
-        option.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(option);
+
+        driver = DriverFactory.getDriver("firefox");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15L, TimeUnit.SECONDS);
         driver.get("http://www.kurs-selenium.pl/demo/");
