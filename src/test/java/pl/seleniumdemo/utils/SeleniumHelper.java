@@ -1,11 +1,14 @@
 package pl.seleniumdemo.utils;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.MediaEntityModelProvider;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 public class SeleniumHelper {
@@ -19,4 +22,17 @@ public class SeleniumHelper {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public static MediaEntityModelProvider getScreenshot(WebDriver driver) throws IOException {
+        String path = takeScreenshot(driver);
+        return MediaEntityBuilder.createScreenCaptureFromPath(path).build();
+    }
+
+    private static String takeScreenshot(WebDriver driver) throws IOException {
+        String screenshotName = "Screen" + System.currentTimeMillis();
+        TakesScreenshot screenshot = (TakesScreenshot) driver;
+        File file = screenshot.getScreenshotAs(OutputType.FILE);
+        String path = "src/test/resources/screenshots/" + screenshotName + ".png";
+        FileUtils.copyFile(file, new File(path));
+        return path;
+    }
 }
